@@ -1,0 +1,47 @@
+{%extends 'blog/base.html'%}
+{% block content %}
+
+{% load django_markdown %}
+
+
+
+<div class="row">
+    
+        <div class="carousel-inner">
+          {% for post in posts %}
+          <div class="item-active">
+          	<div class="col-md-2"> 
+              <a href="{% url 'post_detail' pk=post.pk %}" class="thumbnail"><img src="{{ post.link }}"></a>
+              <h6>{{ post.title }}<h6>
+            </div>
+          </div>
+          {% endfor %} 
+        </div>
+        <br>
+        <div id="homeimage">
+        <a href="http://localhost:8000"><img src="http://localhost:8000/static/images/homeimage.png" class="img-rounded" width="50px" height="50px"></a>
+        </div>
+</div>
+	<br>
+		{% if post.published_date %}
+			<div id="date">
+				{{	post.published_date|date:"M,d, Y"	}}
+			</div>	
+			<h1 id="dblog"> {{ post.title }} </h1>
+			<div id="shares">
+      <a href="http://www.facebook.com/share.php?u=http://localhost:8000{% url 'post_detail' pk=post.pk %}&title={{post.title}}"> <img src="http://localhost:8000/static/images/fbshare.png" class="img-rounded" width="25px" height="25px"></a>
+
+      <a href="http://twitter.com/intent/tweet?status={{ post.title }}+http://localhost:8000{% url 'post_detail' pk=post.pk %}"> <img src="http://localhost:8000/static/images/twittershare.png" class="img-rounded" width="25px" height="25px"></a>
+      
+      <a href="https://plus.google.com/share?url=http://localhost:8000{% url 'post_detail' pk=post.pk %}"> <img src="http://localhost:8000/static/images/googleshare.png" class="img-rounded" width="25px" height="25px"></a>
+      
+      </div>
+		{% endif %}
+		<p>
+		<img id="featured" src="{{ post.link }}" class="img-rounded"alt="featured image">
+		<div id="content"> {{ post.text|markdown }} </div>
+     </p>
+
+	
+
+{% endblock %}
