@@ -10,11 +10,9 @@
      <div id="dblog"> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} </a> </div>
  	   <div id="date">{{ post.published_date|date:"M,d, Y" }}</div>
      
-     <a class="col-md-6" href="{% url 'post_detail' pk=post.pk %}"> <img class="style-article-img mdl-card__title mdl-card--expand " src="{{ post.link }}" alt="featured image"> </a>
-     
-		 <br/>
-       	
+     <a class="col-md-6" href="{% url 'post_detail' pk=post.pk %}"> <img class="style-article-img mdl-card__title mdl-card--expand" src="{{ post.link }}" alt="featured image"> </a>
     </div>
+
 {% endfor %}
 {% endblock %}
 
